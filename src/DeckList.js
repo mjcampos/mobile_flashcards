@@ -12,12 +12,21 @@ class DeckList extends Component {
 	}
 
 	render() {
-		const {viewStyles} = styles;
+		const {viewStyles, textStyles} = styles;
 		var {decks} = this.props;
 
 		return (
 			<View style={viewStyles}>
-				{decks.map(deck => <Text key={deck}>{deck}</Text>)}
+				{decks.map(deck => {
+					var {title, questions} = deck;
+
+					return (
+						<View key={title}>
+							<Text>{title}</Text>
+							<Text style={textStyles}>{questions.length}</Text>
+						</View>
+					);
+				})}
 			</View>
 		);
 	}
@@ -28,12 +37,19 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'space-around'
+	},
+	textStyles: {
+		textAlign: 'center'
 	}
 });
 
 function mapStateToProps(state) {
+	var decks = [];
+
+	_.mapKeys(state.decks, (val, key) => decks.push(state.decks[key]));
+
 	return {
-		decks: _.keys(state.decks)
+		decks
 	};
 }
 
