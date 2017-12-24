@@ -1,17 +1,35 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Keyboard } from 'react-native';
+import {saveDeckTitle} from '../utils/helpers';
+import store from '../store';
 
 class NewDeck extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			deck: ''
+			title: ''
 		}
+	}
+
+	onUserSubmit = () => {
+		var {title} = this.state;
+
+		if(title.trim().length) {
+			store.dispatch(saveDeckTitle(title));
+		} else {
+			console.log("Invalid");
+		}
+
+		this.setState({
+			title: ''
+		});
+
+		Keyboard.dismiss();
 	}
 
 	render() {
 		const {viewStyles, titleStyles, textInputStyles} = styles;
-		var {deck} = this.state;
+		var {title} = this.state;
 
 		return (
 			<View style={viewStyles}>
@@ -19,11 +37,11 @@ class NewDeck extends Component {
 				<TextInput
 					style={textInputStyles}
 					autoCapitalize={'sentences'}
-					placeholder={'Place new deck here'}
-					value={deck}
-					onChangeText={deck => this.setState({deck})}
+					placeholder={'Place new deck title here'}
+					value={title}
+					onChangeText={title => this.setState({title})}
 				/>
-				<Button title="Submit" onPress={() => console.log(deck)}/>
+				<Button title="Submit" onPress={this.onUserSubmit}/>
 			</View>
 		);
 	}
