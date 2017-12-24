@@ -1,22 +1,40 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-// import {getDecks} from './utils/helpers';
 import {connect} from 'react-redux';
+import {getDecks} from '../utils/helpers';
+import store from '../store';
+
+var _ = require('lodash');
 
 class DeckList extends Component {
+	componentWillMount() {
+		store.dispatch(getDecks());
+	}
+
 	render() {
+		const {viewStyles} = styles;
+		var {decks} = this.props;
+
 		return (
-			<View>
-				<Text>DeckList.js</Text>
+			<View style={viewStyles}>
+				{decks.map(deck => <Text key={deck}>{deck}</Text>)}
 			</View>
 		);
 	}
 }
 
-function mapStateToProps(state) {
-	console.log(state);
+const styles = StyleSheet.create({
+	viewStyles: {
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'space-around'
+	}
+});
 
-	return state;
+function mapStateToProps(state) {
+	return {
+		decks: _.keys(state.decks)
+	};
 }
 
 export default connect(mapStateToProps, null)(DeckList);
