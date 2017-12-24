@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 // import {getDecks} from './utils/helpers';
+import {connect} from 'react-redux';
 
 class DeckList extends Component {
 	render() {
@@ -12,4 +13,10 @@ class DeckList extends Component {
 	}
 }
 
-export default DeckList;
+function mapStateToProps(state) {
+	console.log(state);
+
+	return state;
+}
+
+export default connect(mapStateToProps, null)(DeckList);
