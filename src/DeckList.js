@@ -12,7 +12,7 @@ class DeckList extends Component {
 	}
 
 	render() {
-		const {viewStyles, textStyles} = styles;
+		const {viewStyles, countStyles, titleStyles} = styles;
 		var {decks} = this.props;
 
 		return (
@@ -22,8 +22,8 @@ class DeckList extends Component {
 
 					return (
 						<View key={title}>
-							<Text>{title}</Text>
-							<Text style={textStyles}>{questions.length}</Text>
+							<Text style={titleStyles}>{title}</Text>
+							<Text style={countStyles}>{questions.length}</Text>
 						</View>
 					);
 				})}
@@ -38,8 +38,13 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'space-around'
 	},
-	textStyles: {
-		textAlign: 'center'
+	titleStyles: {
+		fontSize: 30,
+		fontWeight: 'bold'
+	},
+	countStyles: {
+		textAlign: 'center',
+		fontSize: 20
 	}
 });
 
