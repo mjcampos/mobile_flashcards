@@ -16,7 +16,7 @@ class Deck extends Component {
 
 				<View>
 					<Button title="Add Card" onPress={() => this.props.navigation.navigate('AddCard', {title})}/>
-					<Button title="Start Quiz" onPress={() => console.log("Start Quiz")}/>
+					<Button title="Start Quiz" onPress={() => this.props.navigation.navigate('Quiz', {title})}/>
 				</View>
 			</View>
 		);
@@ -41,9 +41,9 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state, props) {
-	var {deck} = props.navigation.state.params;
+	var {title} = props.navigation.state.params;
 
-	return state.decks[deck];
+	return state.decks[title];
 }
 
 export default connect(mapStateToProps, null)(Deck);
