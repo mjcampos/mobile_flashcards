@@ -42,8 +42,7 @@ class Quiz extends Component {
 					<Button
 						title="Answer" onPress={() => this.setState({revealAnswer: !this.state.revealAnswer})}
 					/>
-					<Button title="Correct" onPress={() => this.correctAnswer()}/>
-					<Button title="Incorrect" onPress={() => this.setState({index: index + 1})}/>
+					{buttons()}
 				</View>
 			);
 		}
@@ -55,6 +54,28 @@ class Quiz extends Component {
 					<Button
 						title="Question" onPress={() => this.setState({revealAnswer: !this.state.revealAnswer})}
 					/>
+					{buttons()}
+				</View>
+			);
+		}
+
+		var quizComplete = () => {
+			return (
+				<View style={questionStyles}>
+					<Text>Quiz is complete</Text>
+					<Button
+						title="Back"
+						onPress={() => this.props.navigation.dispatch(NavigationActions.back())}
+					/>
+				</View>
+			);
+		}
+
+		var buttons = () => {
+			return (
+				<View>
+					<Button color={'green'} title="Correct" onPress={() => this.correctAnswer()}/>
+					<Button color={'red'} title="Incorrect" onPress={() => this.setState({index: index + 1})}/>
 				</View>
 			);
 		}
@@ -65,15 +86,7 @@ class Quiz extends Component {
 					<Text>{correct} / {questions.length}</Text>
 				</View>
 
-				{index >= questions.length ? (
-					<View style={questionStyles}>
-						<Text>Quiz is complete</Text>
-						<Button
-							title="Back"
-							onPress={() => this.props.navigation.dispatch(NavigationActions.back())}
-						/>
-					</View>
-				) : revealAnswer ? showAnswer() : showQuestion()}
+				{index >= questions.length ? quizComplete() : revealAnswer ? showAnswer() : showQuestion()}
 			</View>
 		);
 
