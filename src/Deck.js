@@ -11,7 +11,7 @@ class Deck extends Component {
 			<View style={viewStyles}>
 				<View>
 					<Text style={titleStyles}>{title}</Text>
-					<Text style={countStyles}>{questions.length}</Text>
+					<Text style={countStyles}>{questions.length} Cards</Text>
 				</View>
 
 				<View>
