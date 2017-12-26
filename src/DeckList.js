@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableHighlight } from 'react-native';
 import {connect} from 'react-redux';
 import {getDecks} from '../utils/helpers';
 import store from '../store';
@@ -16,18 +16,22 @@ class DeckList extends Component {
 		var {decks} = this.props;
 
 		return (
-			<View style={viewStyles}>
-				{decks.map(deck => {
-					var {title, questions} = deck;
+			<ScrollView contentContainerStyle={viewStyles}>
+				<View>
+					{decks.map(deck => {
+						var {title, questions} = deck;
 
-					return (
-						<View key={title}>
-							<Text style={titleStyles}>{title}</Text>
-							<Text style={countStyles}>{questions.length}</Text>
-						</View>
-					);
-				})}
-			</View>
+						return (
+							<TouchableHighlight key={title} onPress={() => this.props.navigation.navigate('Profile')}>
+								<View>
+									<Text style={titleStyles}>{title}</Text>
+									<Text style={countStyles}>{questions.length} Cards</Text>
+								</View>
+							</TouchableHighlight>
+						);
+					})}
+				</View>
+			</ScrollView>
 		);
 	}
 }
@@ -40,6 +44,7 @@ const styles = StyleSheet.create({
 	},
 	titleStyles: {
 		fontSize: 30,
+		textAlign: 'center',
 		fontWeight: 'bold'
 	},
 	countStyles: {
