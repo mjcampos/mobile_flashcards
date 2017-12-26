@@ -15,7 +15,7 @@ class Deck extends Component {
 				</View>
 
 				<View>
-					<Button title="Add Card" onPress={() => console.log("Add Card")}/>
+					<Button title="Add Card" onPress={() => this.props.navigation.navigate('AddCard')}/>
 					<Button title="Start Quiz" onPress={() => console.log("Start Quiz")}/>
 				</View>
 			</View>

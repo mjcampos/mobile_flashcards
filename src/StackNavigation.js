@@ -1,5 +1,5 @@
 import {StackNavigator} from 'react-navigation';
-import DeckList from './DeckList';
+import AddCard from './AddCard';
 import Deck from './Deck';
 import TabNavigation from './TabNavigation';
 
@@ -11,8 +11,14 @@ const ModalStack = StackNavigator({
 			headerTitle: "Home"
 		}
 	},
-	Profile: {
+	Deck: {
 		screen: Deck
+	},
+	AddCard: {
+		screen: AddCard,
+		navigationOptions: {
+			title: "Add Card"
+		}
 	}
 });
 
