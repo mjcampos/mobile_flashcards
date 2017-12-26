@@ -22,7 +22,7 @@ class DeckList extends Component {
 						var {title, questions} = deck;
 
 						return (
-							<TouchableHighlight key={title} onPress={() => this.props.navigation.navigate('Profile')}>
+							<TouchableHighlight key={title} onPress={() => this.props.navigation.navigate('Profile', {deck: title})}>
 								<View>
 									<Text style={titleStyles}>{title}</Text>
 									<Text style={countStyles}>{questions.length} Cards</Text>

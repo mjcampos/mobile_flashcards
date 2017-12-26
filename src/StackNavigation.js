@@ -7,7 +7,8 @@ const ModalStack = StackNavigator({
 	Home: {
 		screen: TabNavigation,
 		navigationOptions: {
-			header: null
+			header: null,
+			headerTitle: "Home"
 		}
 	},
 	Profile: {
