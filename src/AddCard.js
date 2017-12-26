@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Keyboard } from 'react-native';
+import {connect} from 'react-redux';
+import {addCardToDeck} from '../utils/helpers';
 
 class AddCard extends Component {
 	constructor(props) {
@@ -12,13 +14,15 @@ class AddCard extends Component {
 
 	onUserSubmit = () => {
 		var {question, answer} = this.state;
+		var {goBack} = this.props.navigation;
+		var {title} = this.props.navigation.state.params;
 
 		if(question.trim().length && answer.trim().length) {
-			console.log("Valid");
+			this.props.addCardToDeck(title, {question, answer}, goBack);
 		} else {
 			console.log("Invalid");
 		}
-		
+
 		this.setState({
 			question: '',
 			answer: ''
@@ -69,4 +73,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default AddCard;
+export default connect(null, {addCardToDeck})(AddCard);

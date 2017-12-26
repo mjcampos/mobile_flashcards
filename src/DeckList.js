@@ -2,13 +2,12 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, ScrollView, TouchableHighlight } from 'react-native';
 import {connect} from 'react-redux';
 import {getDecks} from '../utils/helpers';
-import store from '../store';
 
 var _ = require('lodash');
 
 class DeckList extends Component {
 	componentWillMount() {
-		store.dispatch(getDecks());
+		this.props.getDecks();
 	}
 
 	render() {
@@ -63,4 +62,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, null)(DeckList);
+export default connect(mapStateToProps, {getDecks})(DeckList);

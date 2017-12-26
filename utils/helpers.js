@@ -20,3 +20,14 @@ export var saveDeckTitle = title => dispatch => {
 		AsyncStorage.setItem(KEY, JSON.stringify(data)).then(() => dispatch(decksActions.saveDeckTitle(data)));
 	});
 }
+
+export var addCardToDeck = (title, questionObj, goBack) => dispatch => {
+	AsyncStorage.getItem(KEY).then(res => JSON.parse(res)).then(data => {
+		data[title].questions.push(questionObj)
+
+		AsyncStorage.setItem(KEY, JSON.stringify(data)).then(() => {
+			dispatch(decksActions.addCardToDeck(data));
+			goBack();
+		});
+	});
+}
