@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet} from 'react-native';
 import {Provider} from 'react-redux';
-import TabNavigation from './src/TabNavigation';
-import StackNavigation from './src/StackNavigation';
-import store from './store';
+import StackNavigation from './src/components/StackNavigation';
+import store from './src/store';
 
 class App extends Component {
 	render() {
