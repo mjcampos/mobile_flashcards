@@ -9,3 +9,8 @@ Mobile Flashcards is a react native application designed either for the iOS or A
 - By the the time the application is finished installed its node_modules you will be taken to an options view in the terminal. In this view they have four options: 1) run app on Android emulator, 2) run app on iOS emulator, 3) restart packager and clear cache, and 4) display QR code
 - If you choose to run this app on your personal device be sure to install expo and then select the option to display the QR code. 
 - With the QR code selected you will be given a barcode for you to scan through your expo application. Scan it and it should appear on your screen. If there are any errors please follow further instructions on the terminal view
+
+## API documentation sources
+
+- [React Native](https://facebook.github.io/react-native/)
+- [React Navigation](https://reactnavigation.org/)
