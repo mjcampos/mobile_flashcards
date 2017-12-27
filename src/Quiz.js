@@ -60,12 +60,18 @@ class Quiz extends Component {
 		}
 
 		var quizComplete = () => {
+			var initialState = {
+				index: 0,
+				correct: 0,
+				revealAnswer: false
+			}
+
 			return (
 				<View style={questionStyles}>
-					<Text>Quiz is complete</Text>
+					<Text>Quiz is complete. Feel free to retake it.</Text>
 					<Button
-						title="Back"
-						onPress={() => this.props.navigation.dispatch(NavigationActions.back())}
+						title="Restart Quiz"
+						onPress={() => this.setState(initialState)}
 					/>
 				</View>
 			);
