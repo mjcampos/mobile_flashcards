@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableHighlight, Button } from 'react-native';
 import {connect} from 'react-redux';
-import {getDecks} from '../utils/helpers';
+import {getDecks, resetDecks} from '../utils/helpers';
 
 var _ = require('lodash');
 
@@ -16,6 +16,11 @@ class DeckList extends Component {
 
 		return (
 			<ScrollView contentContainerStyle={viewStyles}>
+				<Button
+					title="Reset Decks"
+					onPress={() => this.props.resetDecks()}
+				/>
+				
 				<View>
 					{decks.map(deck => {
 						var {title, questions} = deck;
@@ -62,4 +67,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, {getDecks})(DeckList);
+export default connect(mapStateToProps, {getDecks, resetDecks})(DeckList);

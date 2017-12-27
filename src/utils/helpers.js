@@ -5,9 +5,7 @@ import * as decksActions from '../actions/decks';
 const KEY = "DECKS";
 
 export var getDecks = () => dispatch => {
-	AsyncStorage.setItem(KEY, JSON.stringify(initialDeck)).then(() => {
-		AsyncStorage.getItem(KEY).then(res => JSON.parse(res)).then(data => dispatch(decksActions.getDecks(data)));
-	});
+	AsyncStorage.getItem(KEY).then(res => JSON.parse(res)).then(data => dispatch(decksActions.getDecks(data)));
 }
 
 export var saveDeckTitle = (title, navigate) => dispatch => {
@@ -32,5 +30,11 @@ export var addCardToDeck = (title, questionObj, goBack) => dispatch => {
 			dispatch(decksActions.addCardToDeck(data));
 			goBack();
 		});
+	});
+}
+
+export var resetDecks = () => dispatch => {
+	AsyncStorage.setItem(KEY, JSON.stringify(initialDeck)).then(() => {
+		AsyncStorage.getItem(KEY).then(res => JSON.parse(res)).then(data => dispatch(decksActions.getDecks(data)));
 	});
 }
