@@ -13,9 +13,10 @@ class NewDeck extends Component {
 
 	onUserSubmit = () => {
 		var {title} = this.state;
+		var {navigate} = this.props.navigation;
 
 		if(title.trim().length) {
-			store.dispatch(saveDeckTitle(title));
+			store.dispatch(saveDeckTitle(title, navigate));
 		} else {
 			console.log("Invalid");
 		}

@@ -10,14 +10,17 @@ export var getDecks = () => dispatch => {
 	});
 }
 
-export var saveDeckTitle = title => dispatch => {
+export var saveDeckTitle = (title, navigate) => dispatch => {
 	AsyncStorage.getItem(KEY).then(res => JSON.parse(res)).then(data => {
 		data[title] = {
 			title,
 			questions: []
 		}
 
-		AsyncStorage.setItem(KEY, JSON.stringify(data)).then(() => dispatch(decksActions.saveDeckTitle(data)));
+		AsyncStorage.setItem(KEY, JSON.stringify(data)).then(() => {
+			dispatch(decksActions.saveDeckTitle(data));
+			navigate('Deck', {title});
+		});
 	});
 }
 
