@@ -32,14 +32,14 @@ class Quiz extends Component {
 	}
 
 	render() {
-		const {viewStyles, questionStyles} = styles;
+		const {viewStyles, questionStyles, statsStyles, TextStyles} = styles;
 		var {index, correct, revealAnswer} = this.state;
 		var {questions} = this.props;
 
 		var showQuestion = () => {
 			return (
 				<View style={questionStyles}>
-					<Text>{questions[index].question}</Text>
+					<Text style={TextStyles}>{questions[index].question}</Text>
 					<Button
 						title="Answer" onPress={() => this.setState({revealAnswer: !this.state.revealAnswer})}
 					/>
@@ -51,7 +51,7 @@ class Quiz extends Component {
 		var showAnswer = () => {
 			return (
 				<View style={questionStyles}>
-					<Text>{questions[index].answer}</Text>
+					<Text style={TextStyles}>{questions[index].answer}</Text>
 					<Button
 						title="Question" onPress={() => this.setState({revealAnswer: !this.state.revealAnswer})}
 					/>
@@ -92,8 +92,9 @@ class Quiz extends Component {
 
 		return (
 			<View>
-				<View>
+				<View style={statsStyles}>
 					<Text>{correct} / {questions.length}</Text>
+					<Text>{questions.length - index} Questions Remaining</Text>
 				</View>
 
 				{index >= questions.length ? quizComplete() : revealAnswer ? showAnswer() : showQuestion()}
@@ -107,8 +108,17 @@ const styles = StyleSheet.create({
 	viewStyles: {
 		flex: 1
 	},
+	statsStyles: {
+		paddingTop: 10,
+		paddingLeft: 20,
+		paddingBottom: 10
+	},
 	questionStyles: {
 		alignItems: 'center'
+	},
+	TextStyles: {
+		fontSize: 20,
+		fontWeight: 'bold'
 	}
 });
 
