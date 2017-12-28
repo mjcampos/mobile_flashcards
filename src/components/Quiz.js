@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { NavigationActions } from 'react-navigation'
 import { StyleSheet, Text, View, Button } from 'react-native';
 import {connect} from 'react-redux';
+import {resetNotifications} from '../utils/helpers';
 
 class Quiz extends Component {
 	constructor(props) {
@@ -65,6 +66,8 @@ class Quiz extends Component {
 				correct: 0,
 				revealAnswer: false
 			}
+
+			resetNotifications();
 
 			return (
 				<View style={questionStyles}>
