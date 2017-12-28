@@ -67,6 +67,7 @@ class Quiz extends Component {
 				revealAnswer: false
 			}
 
+			// When user has finished taking a quiz a scheduled notification is set to notify them the next day to take the quiz again
 			resetNotifications();
 
 			return (
